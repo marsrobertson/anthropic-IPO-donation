@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaia — turn Anthropic shares into forever-commons land</title>
+<meta name="description" content="Gaia converts donated Anthropic shares into land held in the forever commons. First priorities: water, food, warmth.">
+<style>
+  :root {
+    --ink: #0d1b2a;
+    --ink-soft: #44566b;
+    --paper: #f4f7f5;
+    --card: #ffffff;
+    --line: #d5dfdc;
+    --ice: #1f6fb5;
+    --moss: #2f6b4a;
+    --moss-deep: #1d4a33;
+    --sun: #e0a526;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8efec; --ink-soft: #a3b3ae; --paper: #0c1512; --card: #14201c;
+      --line: #263631; --ice: #6fb4ee; --moss: #6fc194; --moss-deep: #a5e0bf; --sun: #f0c050;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 17px/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  h1, h2, h3, nav, .btn, .tag, .step-n, table, .mono {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--ice); }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; gap: 16px; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: .14em; color: var(--moss-deep); text-decoration: none; }
+  nav .links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; }
+  nav .links a { color: var(--ink-soft); text-decoration: none; }
+  nav .links a:hover { color: var(--ink); }
+
+  .hero { padding: 36px 0 56px; }
+  .hero h1 { font-size: clamp(36px, 6.4vw, 68px); line-height: 1.04; margin: 0 0 20px; letter-spacing: -.02em; }
+  .hero h1 em { font-style: normal; color: var(--moss); }
+  .hero p.lead { font-size: clamp(18px, 2.2vw, 22px); max-width: 680px; color: var(--ink-soft); margin: 0 0 28px; }
+  .btn {
+    display: inline-block; padding: 14px 24px; border-radius: 6px; font-weight: 700;
+    text-decoration: none; font-size: 16px; border: 2px solid var(--moss);
+  }
+  .btn.primary { background: var(--moss); color: #fff; }
+  .btn.ghost { color: var(--moss-deep); margin-left: 10px; }
+  .note-art { margin-top: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 20px 50px -25px rgba(13,27,42,.5); }
+  .note-art img { display: block; width: 100%; height: auto; }
+  .caption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 8px; letter-spacing: -.01em; }
+  .sub { color: var(--ink-soft); max-width: 680px; margin: 0 0 28px; }
+  .tag { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--moss); font-weight: 700; margin-bottom: 10px; }
+
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+  .card .big { font-size: 30px; margin-bottom: 8px; }
+  .step-n { font-weight: 800; color: var(--ice); font-size: 14px; letter-spacing: .1em; }
+
+  .trust { display: grid; gap: 28px; grid-template-columns: 1fr; }
+  @media (min-width: 820px) { .trust { grid-template-columns: 5fr 6fr; } }
+  .rule { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 700; border-left: 4px solid var(--sun); padding: 4px 0 4px 16px; margin: 0 0 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  tr:last-child td { border-bottom: 0; }
+  .tw { overflow-x: auto; }
+  .trust > div { min-width: 0; }
+  .btn.ghost { margin-top: 10px; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .pill.open { background: color-mix(in srgb, var(--sun) 25%, transparent); color: var(--ink); }
+  .pill.ok { background: color-mix(in srgb, var(--moss) 22%, transparent); color: var(--moss-deep); }
+  .pill.todo { background: color-mix(in srgb, var(--ink-soft) 18%, transparent); color: var(--ink-soft); }
+
+  .cta { background: var(--moss-deep); color: #f1f7f3; border-radius: 10px; padding: 40px 28px; text-align: center; }
+  @media (prefers-color-scheme: dark) { .cta { background: #1d4a33; } }
+  .cta h2 { color: #fff; }
+  .cta p { color: #cfe3d7; max-width: 600px; margin: 0 auto 24px; }
+  .cta .btn.primary { background: #fff; color: #1d4a33; border-color: #fff; }
+
+  footer { padding: 36px 0 60px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  footer p { margin: 0 0 8px; max-width: 760px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="#">GAIA</a>
+    <div class="links">
+      <a href="#priorities">Priorities</a>
+      <a href="#how">How it works</a>
+      <a href="#trust">Optimistic trust</a>
+      <a href="#legal">Legal structure</a>
+      <a href="#pledge">Pledge</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Turn Anthropic shares into <em>land that can never be sold.</em></h1>
+    <p class="lead">
+      Gaia takes donated Anthropic equity and converts it into land held in the forever commons.
+      Water first. Food second. Warmth third. Everything goes into the ground.
+    </p>
+    <a class="btn primary" href="#pledge">Pledge shares</a>
+    <a class="btn ghost" href="#how">How it works</a>
+    <div class="note-art">
+      <img src="banknote.jpg" alt="Gaia art banknote: a glowing globe framed by snowy alpine villages, inscribed 'Rebuilding Trust'">
+    </div>
+    <div class="caption">Art banknote, “Rebuilding Trust”. An artwork, not currency.</div>
+  </header>
+
+  <section id="priorities">
+    <div class="tag">Gaianism</div>
+    <h2>We help restore the Earth</h2>
+    <p class="sub">Gaianism treats the living Earth as the thing worth serving. In practice that means a strict order of priorities.</p>
+    <div class="grid">
+      <div class="card"><div class="big">💧</div><h3>1 · Water</h3><p>Springs, wells, catchments, wetlands. No water, nothing else works.</p></div>
+      <div class="card"><div class="big">🌾</div><h3>2 · Food</h3><p>Working farmland, orchards and gardens that feed the people living on the land.</p></div>
+      <div class="card"><div class="big">🔥</div><h3>3 · Warmth</h3><p>Shelter and heat: agricultural housing, fuel, woodland managed for firewood.</p></div>
+      <div class="card"><div class="big">🌲</div><h3>Reforestation</h3><p>Planting and natural regeneration on degraded land.</p></div>
+      <div class="card"><div class="big">🧑‍🌾</div><h3>Land stewardship</h3><p>People on the land long-term, looking after soil, water and trees.</p></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="tag">The mechanism</div>
+    <h2>Shares in, land out</h2>
+    <p class="sub">All of the money goes towards land. The land is owned by Gaia and held in the forever commons: used and tended, never flipped.</p>
+    <div class="grid">
+      <div class="card"><div class="step-n">STEP 1</div><h3>Pledge</h3><p>Tell us how many Anthropic shares, or what value, you intend to give. A pledge is a public statement of intent, not a transfer.</p></div>
+      <div class="card"><div class="step-n">STEP 2</div><h3>Transfer</h3><p>Once your shares are liquid and unrestricted, you donate the shares or the proceeds to the appropriate Gaia entity.</p></div>
+      <div class="card"><div class="step-n">STEP 3</div><h3>Buy land</h3><p>Each purchase is announced in public first, under the optimistic trust rule below.</p></div>
+      <div class="card"><div class="step-n">STEP 4</div><h3>Forever commons</h3><p>Title sits with Gaia. The land is stewarded for water, food and warmth, and is not resold.</p></div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="tag">Governance</div>
+    <h2>Optimistic trust</h2>
+    <div class="trust">
+      <div>
+        <p class="rule">Announce what you are going to do. If nobody objects within 24 hours, you have consent to do it.</p>
+        <p>That is the whole process. It is simple, it is transparent, and it scales, because nobody waits on a committee. An objection pauses the action until it is resolved in the open.</p>
+        <p>We fund on <strong>retroactive value</strong>: act first on announced intentions, and let the results be judged and rewarded afterwards.</p>
+        <p><a id="object-link" href="#">Object to an open intention →</a></p>
+      </div>
+      <div>
+        <div class="tw"><table>
+          <thead><tr><th>#</th><th>Intention</th><th>Announced (UTC)</th><th>Status</th></tr></thead>
+          <tbody id="ledger"></tbody>
+        </table></div>
+        <div class="caption">Public intentions ledger. Times are UTC; the objection window is 24 hours from announcement.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="legal">
+    <div class="tag">Structure</div>
+    <h2>Legal structure</h2>
+    <p class="sub">Gaia operates through a family of entities, each used where it fits. Registration details for each will be published here before any donation is accepted through it.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Entity</th><th>Used for</th><th>Jurisdiction · Registration no.</th></tr></thead>
+      <tbody id="entities"></tbody>
+    </table></div>
+    <p class="caption">
+      Whether your gift is tax-deductible, and whether a transfer is tax-free, depends on your country, the specific receiving entity,
+      and the restrictions on your shares. Check with your own tax adviser before transferring anything.
+    </p>
+  </section>
+
+  <section id="partners">
+    <div class="tag">Partners</div>
+    <h2>Working with</h2>
+    <div class="grid">
+      <div class="card"><h3>Climate Coordination Network</h3><p>Coordination partner for climate and land restoration work.</p></div>
+    </div>
+  </section>
+
+  <section id="pledge">
+    <div class="cta">
+      <h2>Pledge your Anthropic shares</h2>
+      <p>Pledges are made in public, like everything else here. No money or shares move at this stage.</p>
+      <a class="btn primary" id="pledge-link" href="#">Make a public pledge</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Gaia is an independent initiative. It is not affiliated with, endorsed by, or acting on behalf of Anthropic PBC.</p>
+    <p>Nothing on this page is investment, legal or tax advice. A pledge is a non-binding statement of intent.</p>
+  </footer>
+</div>
+
+<script>
+  // ---- Edit these ----
+  const REPO = "https://github.com/marsrobertson/anthropic-ipo-donation";
+
+  const INTENTIONS = [
+    { id: 1, text: "Launch this website and open public pledges of Anthropic shares.", announced: "2026-11-13T22:45:00Z", objected: false }
+  ];
+
+  // Fill in jurisdiction + registration number as each one is ready to be shown publicly.
+  const ENTITIES = [
+    { name: "Religious organisation (Gaianism)", use: "Stewardship of the commons as religious practice", reg: "" },
+    { name: "Charity / non-profit", use: "Receiving donations", reg: "" },
+    { name: "Community benefit organisation", use: "Holding land for community use", reg: "" },
+    { name: "Public benefit corporation", use: "Trading activity in service of the mission", reg: "" },
+    { name: "Housing society", use: "Housing on stewarded land", reg: "" },
+    { name: "Registered farm", use: "Agricultural fuel, agricultural housing", reg: "" }
+  ];
+  // --------------------
+
+  const issue = (title, body, label) =>
+    REPO + "/issues/new?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body) +
+    (label ? "&labels=" + encodeURIComponent(label) : "");
+
+  document.getElementById("pledge-link").href = issue(
+    "Pledge: ",
+    "I intend to donate Anthropic shares to Gaia.\n\nAmount (shares or value):\nExpected timing (e.g. after lock-up):\nCountry of tax residence:\nAnything else:\n\nThis is a non-binding statement of intent. Do not post private financial details here; this page is public.",
+    "pledge");
+  document.getElementById("object-link").href = issue(
+    "Objection to intention #",
+    "Intention number:\nWhat I object to:\nWhat would resolve it:",
+    "objection");
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const WINDOW_MS = 24 * 60 * 60 * 1000;
+
+  function renderLedger() {
+    const now = Date.now();
+    document.getElementById("ledger").innerHTML = INTENTIONS.map(i => {
+      const left = new Date(i.announced).getTime() + WINDOW_MS - now;
+      let status;
+      if (i.objected) status = '<span class="pill todo">Paused · objection</span>';
+      else if (left > 0) {
+        const h = Math.floor(left / 3600000), m = Math.floor((left % 3600000) / 60000);
+        status = `<span class="pill open">Open · ${h}h ${m}m left</span>`;
+      } else status = '<span class="pill ok">Consent · no objection</span>';
+      return `<tr><td>${i.id}</td><td>${esc(i.text)}</td><td class="mono">${esc(i.announced.replace("T", " ").replace(":00Z", ""))}</td><td>${status}</td></tr>`;
+    }).join("");
+  }
+  renderLedger();
+  setInterval(renderLedger, 60000);
+
+  document.getElementById("entities").innerHTML = ENTITIES.map(e =>
+    `<tr><td><strong>${esc(e.name)}</strong></td><td>${esc(e.use)}</td><td>${e.reg ? esc(e.reg) : '<span class="pill todo">To be published</span>'}</td></tr>`
+  ).join("");
+</script>
+</body>
+</html>
