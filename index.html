@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gaia — Anthropic shares into common land</title>
+<title>Gaia Land Commons</title>
 <meta name="description" content="Gaia proposes converting donated Anthropic shares into land held permanently in common. Water, food and warmth first.">
 <style>
   :root { --ink:#14201b; --soft:#56635d; --paper:#fbfaf6; --panel:#f1efe8; --line:#dcd9ce; --accent:#1f4d3a; --on-accent:#f6f4ec; }
   @media (prefers-color-scheme: dark) {
-    :root { --ink:#ecebe4; --soft:#a4aca6; --paper:#101613; --panel:#18201c; --line:#2b3530; --accent:#8fc7ab; --on-accent:#0f1512; }
-    .lp svg { filter: brightness(1.9) saturate(.8); }
+    :root:not([data-theme="light"]) { --ink:#ecebe4; --soft:#a4aca6; --paper:#101613; --panel:#18201c; --line:#2b3530; --accent:#8fc7ab; --on-accent:#0f1512; }
+    :root:not([data-theme="light"]) .lp svg { filter: brightness(1.9) saturate(.8); }
   }
+  :root[data-theme="dark"] { --ink:#ecebe4; --soft:#a4aca6; --paper:#101613; --panel:#18201c; --line:#2b3530; --accent:#8fc7ab; --on-accent:#0f1512; }
+  :root[data-theme="dark"] .lp svg { filter: brightness(1.9) saturate(.8); }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { margin:0; background:var(--paper); color:var(--ink); font:16.5px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
@@ -145,6 +147,7 @@
       <div><p class="eyebrow">Governance</p><h2>Optimistic trust</h2></div>
       <div class="body">
         <p>Every action is announced in public before it is taken. If nobody objects within 24 hours, that is treated as consent to proceed. An objection pauses the action until it is resolved in the open.</p>
+        <p>Gaia operates under the <strong>Planetary Council</strong>. Objections that cannot be settled in the open go to an <strong>Independent Tribunal</strong>.</p>
         <p class="muted">Simple, transparent and scalable. <a id="object-link" href="#">Raise an objection</a></p>
       </div>
     </div>
